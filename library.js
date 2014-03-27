@@ -1214,6 +1214,9 @@ var WebSocketTransport = SockJS.websocket = function(ri, trans_url) {
     that.ws.onmessage = function(e) {
         that.ri._didMessage(e.data);
     };
+    that.ws.onerror = function(e) {
+        ri._didMessage(utils.closeFrame(1006, "WebSocket connection broken"));
+    };
     // Firefox has an interesting bug. If a websocket connection is
     // created after onunload, it stays alive even when user
     // navigates away from the page. In such situation let's lie -
@@ -1234,7 +1237,7 @@ WebSocketTransport.prototype.doCleanup = function() {
     var that = this;
     var ws = that.ws;
     if (ws) {
-        ws.onmessage = ws.onclose = null;
+        ws.onmessage = ws.onclose = ws.onerror = null;
         ws.close();
         utils.unload_del(that.unload_ref);
         that.unload_ref = that.ri = that.ws = null;
