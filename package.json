@@ -1,6 +1,6 @@
 {
   "name": "sockjs-client-node",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "A Node.js wrapper for the Sockjs client.",
   "main": "index.js",
   "scripts": {
@@ -19,10 +19,11 @@
   "author": "Arnout Kazemier",
   "license": "MIT",
   "dependencies": {
-    "jsdom": "~0.6.5",
-    "ws": "~0.4.27"
+    "jsdom": "0.10.x",
+    "primus": "*",
+    "ws": "0.4.x"
   },
   "devDependencies": {
-    "sockjs": "~0.3.7"
+    "sockjs": "0.3.x"
   }
 }
