@@ -12,7 +12,15 @@ var scope = require('jsdom').jsdom('<html><head></head><body></body></html>').pa
 var library = path.join(primus, '..', 'transformers/sockjs/library.js');
 
 scope.WebSocket = require('ws');
-scope.eval(read(library, 'utf-8'));
+
+//
+// On Node 0.12 there are some issues with eval. It somehow doesn't correctly
+// introduce the SockJS global. Using script tags fully resolves this issue.
+//
+var script = scope.document.createElement('script');
+script.text = read(library, 'utf-8');
+scope.document.body.appendChild(script);
+script = null;
 
 //
 // The href is `about:blank` by default. This doesn't work SockJS's same origin
