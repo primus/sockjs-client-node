@@ -1,4 +1,6 @@
-# *Notice: This project has been deprecated in favor of the official [SockJS-client](https://github.com/sockjs/sockjs-client) which now works seamlessly across Node.js and browser environments*
+# Deprecated
+
+This project has been deprecated in favor of the official [SockJS-client](https://github.com/sockjs/sockjs-client) which now works seamlessly across Node.js and browser environments.
 
 # sockjs-client-node
 
