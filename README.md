@@ -1,3 +1,5 @@
+# *Notice: This project has been deprecated in favor of the official [SockJS-client](https://github.com/sockjs/sockjs-client) which now works seamlessly across Node.js and browser environments*
+
 # sockjs-client-node
 
 [![Version npm][npm-sockjs-client-node-badge]][npm-sockjs-client-node][![Build Status][travis-sockjs-client-node-badge]][travis-sockjs-client-node][![Dependencies][david-sockjs-client-node-badge]][david-sockjs-client-node][![Coverage Status][coverage-sockjs-client-node-badge]][coverage-sockjs-client-node][![IRC channel][irc-badge]][irc]
