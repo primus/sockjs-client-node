@@ -1,6 +1,6 @@
 'use strict';
 
-var scope = require('jsdom').jsdom('<html><head></head><body></body></html>').parentWindow
+var scope = require('jsdom').jsdom('<html><head></head><body></body></html>').defaultView
   , primus = require.resolve('primus')
   , read = require('fs').readFileSync
   , path = require('path');
