@@ -1,7 +1,8 @@
 'use strict';
 
 var sockjs = require('sockjs')
-  , http = require('http');
+  , http = require('http')
+  , SockJS = require('./');
 
 //
 // Setup a Sockjs server so we can listen for incoming connections and regular
@@ -24,23 +25,22 @@ realtime.installHandlers(server, {
 // Listen to the server.
 //
 server.listen(8123, function listening() {
-  var SockJS = require('./')
-    , socket = new SockJS('http://localhost:8123/test');
+  var socket = new SockJS('http://localhost:8123/test')
+    , timeout;
 
   socket.onopen = function onopen() {
     socket.send('foo');
   };
 
   socket.onmessage = function onmessage(evt) {
-    if ('foo' === evt.data) return process.exit(0);
+    if ('foo' !== evt.data) throw new Error('Invalid message');
 
-    console.error('Invalid message');
-    process.exit(1);
+    clearTimeout(timeout);
+    socket.close();
+    server.close();
   };
 
-  setTimeout(function timeout() {
-    console.error('timeout');
-
-    process.exit(1);
+  timeout = setTimeout(function timeout() {
+    throw new Error('Timeout');
   }, 1000);
 });
