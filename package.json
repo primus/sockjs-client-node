@@ -1,6 +1,6 @@
 {
   "name": "sockjs-client-node",
-  "version": "0.2.2",
+  "version": "1.0.0",
   "description": "A Node.js wrapper for the Sockjs client.",
   "main": "index.js",
   "scripts": {
