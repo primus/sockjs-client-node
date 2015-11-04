@@ -1,8 +1,7 @@
+sudo: false
 language: node_js
 node_js:
-  - "4.2.1"
-  - "5.0.0"
-before_install:
-  - 'if [ "${TRAVIS_NODE_VERSION}" == "0.8" ] || [ "${TRAVIS_NODE_VERSION}" == "0.9" ] ; then npm install -g npm@2.6.1; fi'
+  - "5"
+  - "4"
 matrix:
   fast_finish: true
