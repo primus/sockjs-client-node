@@ -1,15 +1,18 @@
 'use strict';
 
-var scope = require('jsdom').jsdom('<html><head></head><body></body></html>').defaultView
-  , primus = require.resolve('primus')
-  , read = require('fs').readFileSync
-  , path = require('path');
+var read = require('fs').readFileSync
+  , jsdom = require('jsdom').jsdom
+  , join = require('path').join;
+
+var scope = jsdom('<html><head></head><body></body></html>', {
+  agentOptions: { keepAlive: false }
+}).defaultView;
 
 //
-// The library in Primus contains additional stability fixes which makes it
-// a lot more stable to run on node, which why we use that instead.
+// The library in Primus contains additional stability fixes which make it
+// a lot more stable.
 //
-var library = path.join(primus, '..', 'transformers/sockjs/library.js');
+var lib = join(require.resolve('primus'), '../transformers/sockjs/library.js');
 
 scope.WebSocket = require('ws');
 
@@ -18,7 +21,7 @@ scope.WebSocket = require('ws');
 // introduce the SockJS global. Using script tags fully resolves this issue.
 //
 var script = scope.document.createElement('script');
-script.text = read(library, 'utf-8');
+script.text = read(lib, 'utf-8');
 scope.document.body.appendChild(script);
 script = null;
 
